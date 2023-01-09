@@ -4,6 +4,7 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', name: 'Home', component: () => import('../views/index/index.vue') },
   { path: '/material', name: 'Material', component: () => import('../views/material/index.vue') },
+  { path: '/customerService', name: 'CustomerService', component: () => import('../views/customerService/index.vue') },
 ]
 const router = new VueRouter({
   routes,

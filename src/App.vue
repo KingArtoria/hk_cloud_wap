@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 标签 -->
-    <TabBar />
+    <TabBar :userInfo="user" />
     <!-- 页面 -->
     <router-view style="padding-top: 3.424rem" />
     <!-- 登录遮罩层 -->
@@ -46,7 +46,7 @@
 <script>
 import Vue from "vue";
 import TabBar from "./components/TabBar";
-import { errorTip, isNotEmpty } from "./utils";
+import { errorTip, initAvatar, isNotEmpty } from "./utils";
 import { getVerifyCode, login } from "./utils/api";
 export default {
   data() {
@@ -57,6 +57,13 @@ export default {
       loginParams: {},
       // 验证码文案
       verifyCodeText: "获取验证码",
+      // 用户信息
+      user: {
+        head: "",
+        real_name: "暂未登录",
+        id: "暂未登录",
+        phone: "暂未登录",
+      },
     };
   },
   methods: {
@@ -68,8 +75,14 @@ export default {
         if (res.code != 1) return errorTip(res.msg);
         // 保存token
         localStorage.setItem("hcw_token", res.data.app_token);
+        // 初始化用户信息
+        res.data.userinfo.head = initAvatar(res.data.userinfo.head);
+        // 保存当前值用户信息
+        this.user = res.data.userinfo;
         // 保存用户信息
         localStorage.setItem("hcw_user", JSON.stringify(res.data.userinfo));
+        // 声明全局用户信息
+        Vue.prototype._user = JSON.parse(localStorage.getItem("hcw_user"));
         // 关闭遮罩
         this.overlay = false;
       });
@@ -111,14 +124,25 @@ export default {
     Vue.prototype._token = localStorage.getItem("hcw_token");
     // 声明全局用户信息
     Vue.prototype._user = JSON.parse(localStorage.getItem("hcw_user"));
+    // 初始化用户信息
+    this.user = this._user;
     // 是否有token
     if (!isNotEmpty(this._token)) this.overlay = true;
+    // 绑定自定义事件
+    this.$bus.$on("overlay", () => {
+      this.overlay = true;
+    });
+  },
+  beforeCreate() {
+    //安装全局事件总线
+    Vue.prototype.$bus = this;
   },
   components: { TabBar },
 };
 </script>
 <style lang="scss">
 @import "./index.css";
+@import "./index.scss";
 .overlay {
   width: 19.84rem;
   height: 21.984rem;

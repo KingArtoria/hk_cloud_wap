@@ -1,0 +1,32 @@
+.van-collapse {
+  .van-collapse-item {
+    .van-cell {
+      height: 3.072rem !important;
+      padding: 0 !important;
+      padding-left: 0.768rem !important;
+      padding-right: 0.768rem !important;
+      display: flex;
+      align-items: center;
+
+      .van-cell__title {
+        font-size: .96rem;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #1A1A1A;
+      }
+    }
+
+    .van-icon-arrow {
+      height: auto;
+    }
+  }
+}
+
+.box_3_1 {
+  font-size: .832rem;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #444444;
+  line-height: 2.56rem;
+  padding-left: 1.28rem;
+}

@@ -1,0 +1,38 @@
+.contnet {
+  background: #FFC99F;
+  min-height: calc(100vh - 3.424rem);
+
+  .content_1 {
+    height: 2.496rem;
+    line-height: 2.496rem;
+    padding-left: .64rem;
+    font-size: .768rem;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #3A3A3A;
+    background: #fff;
+  }
+
+  .content_2 {
+    height: 42.72rem;
+    width: 100%;
+  }
+
+  .content_3 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: 11rem;
+    width: 8.672rem;
+    height: 2.464rem;
+    background: linear-gradient(90deg, #FC6473 0%, #FF9944 100%);
+    border-radius: 1.248rem;
+    font-size: .96rem;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #FFFFFF;
+    line-height: 2.464rem;
+    text-align: center;
+  }
+}

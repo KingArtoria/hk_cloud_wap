@@ -8,3 +8,11 @@ export const isNotEmpty = (value) => {
 export const errorTip = (message) => {
   Notify({ type: 'danger', message, });
 }
+// * 头像初始化
+export const initAvatar = head => {
+  // ? 是否包含http
+  if (head.indexOf("http") === -1) {
+    head = `https://admin.bdhuoke.com${head}`;
+  }
+  return head
+}
